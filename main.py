@@ -6,17 +6,19 @@ import threading
 
 
 class Server:
+    _COMPRESSION_QUALITY = 80
+
     def __init__(self):
         self._app = web.Application()
         self._app.router.add_get("/", self._index)
         self._app.router.add_get("/stream", self._stream)
 
-        self.frame = None
-        self.cached_chunk = None
-        self.has_cache = False
+        self.frame: cv2.Mat | None = None
+        self.cached_chunk: bytes | None = None
+        self.has_cache: bool = False
         self._app["sessions_chunk_sent_flag"] = {}
 
-    async def _index(self, request):
+    async def _index(self, request: web.Request):
         return web.Response(
             content_type="text/html",
             text="""
@@ -34,7 +36,7 @@ class Server:
                 """,
         )
 
-    async def _stream(self, request):
+    async def _stream(self, request: web.Request):
         session_id = str(uuid.uuid4())
         self._app["sessions_chunk_sent_flag"][session_id] = False
 
@@ -51,7 +53,7 @@ class Server:
                     _, jpeg = cv2.imencode(
                         ".jpeg",
                         self.frame,
-                        [cv2.IMWRITE_JPEG_QUALITY, 80],
+                        [cv2.IMWRITE_JPEG_QUALITY, self._COMPRESSION_QUALITY],
                     )
                     jpeg_bytes = jpeg.tobytes()
 
@@ -93,6 +95,8 @@ class Server:
             self._app["sessions_chunk_sent_flag"][key] = False
 
 
+_PORT = 8080
+
 if __name__ == "__main__":
 
     def video_capture_thread():
@@ -106,4 +110,4 @@ if __name__ == "__main__":
     threading.Thread(target=video_capture_thread).start()
 
     server = Server()
-    server.start(8080)
+    server.start(_PORT)

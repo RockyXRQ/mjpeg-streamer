@@ -1,0 +1,11 @@
+services:
+  mjpeg-server:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ../..:/workspaces:cached
+      - /dev/v4l:/dev/v4l
+    privileged: true
+    network_mode: host
+    command: sleep infinity

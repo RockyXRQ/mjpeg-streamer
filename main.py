@@ -6,7 +6,7 @@ import threading
 
 
 class Server:
-    _COMPRESSION_QUALITY = 80
+    _COMPRESSION_QUALITY: int = 80
 
     def __init__(self):
         self._app = web.Application()
@@ -95,7 +95,7 @@ class Server:
             self._app["sessions_chunk_sent_flag"][key] = False
 
 
-_PORT = 8080
+_PORT: int = 8080
 
 if __name__ == "__main__":
 

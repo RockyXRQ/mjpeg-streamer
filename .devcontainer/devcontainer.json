@@ -1,9 +1,9 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-    "name": "mjpeg-server",
+    "name": "mjpeg-streamer",
     "dockerComposeFile": "docker-compose.yml",
-    "service": "mjpeg-server",
+    "service": "mjpeg-streamer",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "customizations": {
         "vscode": {

@@ -1,5 +1,5 @@
 services:
-  mjpeg-server:
+  mjpeg-streamer:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile

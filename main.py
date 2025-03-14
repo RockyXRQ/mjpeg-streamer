@@ -84,7 +84,6 @@ class Server:
             port=port,
             handler_cancellation=True,
             reuse_address=True,
-            reuse_port=True,
         )
 
     def set_frame(self, frame: cv2.Mat):

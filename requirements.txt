@@ -1,4 +1,4 @@
-aiohttp==3.11.9
-numpy==1.24.4
-opencv-contrib-python-headless==4.10.0.84
+aiohttp==3.11.13
+numpy==2.2.1
+opencv-contrib-python-headless==4.11.0.86
 

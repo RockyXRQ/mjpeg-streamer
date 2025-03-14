@@ -14,7 +14,7 @@ RUN python3 get-pip.py
 RUN apt install -y git
 
 # numpy
-RUN pip3 install numpy==1.24.4
+RUN pip3 install numpy
 
 # opencv
 RUN pip3 install opencv-contrib-python-headless
